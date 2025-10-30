@@ -348,4 +348,4 @@ const Alamat = () => {
   );
 };
 
-export default Alamat;
+export default Alamat;  

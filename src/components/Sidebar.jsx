@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Users, FileText, Box, Banknote, Activity,
-  HelpCircle, Clipboard, Megaphone, MessageSquare, ChevronDown, ChevronRight
+  HelpCircle, Clipboard, Megaphone, MessageSquare, ChevronDown, ChevronRight, X
 } from "lucide-react";
 
-function Sidebar() {
+function Sidebar({ setIsMobileOpen }) {
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -43,17 +43,25 @@ function Sidebar() {
   };
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 min-h-screen fixed top-0 left-0 overflow-y-auto">
-      {/* Logo */}
-      <div className="flex items-center gap-2 p-5 border-b">
-        <div className="bg-cyan-700 text-white text-lg font-bold px-3 py-2 rounded">LM</div>
-        <div>
-          <h1 className="text-sm font-semibold text-gray-700">Loan Market</h1>
-          <p className="text-xs text-gray-400">Admin Portal</p>
+    <aside className="w-full h-full bg-white border-r border-gray-200 overflow-y-auto">
+      {/* Header Sidebar */}
+      <div className="flex items-center justify-between p-5 border-b">
+        <div className="flex items-center gap-2">
+          <div className="bg-cyan-700 text-white text-lg font-bold px-3 py-2 rounded">LM</div>
+          <div>
+            <h1 className="text-sm font-semibold text-gray-700">Loan Market</h1>
+            <p className="text-xs text-gray-400">Admin Portal</p>
+          </div>
         </div>
+        <button
+          onClick={() => setIsMobileOpen(false)}
+          className="lg:hidden text-gray-600 hover:text-gray-800"
+        >
+          <X size={20} />
+        </button>
       </div>
 
-      {/* Menu */}
+      {/* Menu List */}
       <ul className="mt-2">
         {menu.map((item, i) => (
           <li key={i}>
@@ -77,7 +85,7 @@ function Sidebar() {
                 </div>
 
                 {openMenu === item.label && (
-                  <ul className="ml-10 mt-1 space-y-1 transition-none">
+                  <ul className="ml-10 mt-1 space-y-1">
                     {item.sub.map((subItem, j) => (
                       <li key={j}>
                         <Link
@@ -87,6 +95,7 @@ function Sidebar() {
                               ? "text-cyan-600 font-medium"
                               : "text-gray-600"
                           }`}
+                          onClick={() => setIsMobileOpen(false)}
                         >
                           {subItem.label}
                         </Link>
@@ -98,9 +107,10 @@ function Sidebar() {
             ) : (
               <Link
                 to={item.path}
+                onClick={() => setIsMobileOpen(false)}
                 className={`flex items-center gap-3 px-5 py-2.5 hover:bg-cyan-50 hover:text-cyan-600 cursor-pointer ${
                   location.pathname === item.path
-                    ? "text-cyan-600 bg-cyan-50"
+                    ? "text-cyan-600 bg-cyan-50 font-medium"
                     : "text-gray-700"
                 }`}
               >
