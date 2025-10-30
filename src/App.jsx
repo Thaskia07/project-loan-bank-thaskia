@@ -8,13 +8,14 @@ import Product from "./pages/Product";
 import ProductBank from "./pages/ProductBank";
 import CategoryProduct from "./pages/CategoryProduct";
 import BankDetail from "./pages/BankDetail";
-import EditProductBank from "./pages/EditProductBank"; 
+import EditProductBank from "./pages/EditProductBank";
 import PilihanProdukBank from "./pages/PilihanProdukBank";
 import Alamat from "./pages/Alamat";
 import UploadDokumen from "./pages/UploadDokumen";
 
 function App() {
   useEffect(() => {
+    // Pastikan admin default selalu ada saat app pertama kali dijalankan
     const admin = localStorage.getItem("adminData");
     if (!admin) {
       const defaultAdmin = {
@@ -47,9 +48,8 @@ function App() {
                       <Route path="/product" element={<Product />} />
                       <Route path="/product-bank" element={<ProductBank />} />
                       <Route path="/product-bank/:id" element={<BankDetail />} />
-                      <Route path="/product-bank/edit/:id" element={<EditProductBank />} /> 
+                      <Route path="/product-bank/edit/:id" element={<EditProductBank />} />
                       <Route path="/category-product" element={<CategoryProduct />} />
-
                       <Route path="/pilihan-produk-bank" element={<PilihanProdukBank />} />
                       <Route path="/alamat" element={<Alamat />} />
                       <Route path="/upload-dokumen" element={<UploadDokumen />} />
@@ -62,8 +62,6 @@ function App() {
             )
           }
         />
-
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

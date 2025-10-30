@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -7,28 +7,24 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const adminData = localStorage.getItem("adminData");
-    if (!adminData) {
-      localStorage.setItem(
-        "adminData",
-        JSON.stringify({ username: "admin", password: "adminloan2025" })
-      );
-    }
-  }, []);
-
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const adminData = JSON.parse(localStorage.getItem("adminData"));
+    // Pastikan adminData selalu ada (default di sini, bukan di useEffect)
+    const adminData =
+      JSON.parse(localStorage.getItem("adminData")) || {
+        username: "admin",
+        password: "adminloan2025",
+        fullName: "Yohannes Affandy (Jojo)",
+      };
 
-    if (
-      adminData &&
-      username === adminData.username &&
-      password === adminData.password
-    ) {
+    // Simpan adminData ke localStorage jika belum ada
+    localStorage.setItem("adminData", JSON.stringify(adminData));
+
+    // Cek login
+    if (username === adminData.username && password === adminData.password) {
       localStorage.setItem("isLoggedIn", "true");
-      navigate("/"); 
+      navigate("/"); // ke dashboard
     } else {
       setError("❌ Username atau password salah!");
     }
