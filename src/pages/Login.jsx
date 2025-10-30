@@ -12,7 +12,7 @@ function Login() {
     if (!adminData) {
       localStorage.setItem(
         "adminData",
-        JSON.stringify({ username: "admin", password: "admin123" })
+        JSON.stringify({ username: "admin", password: "adminloan2025`" })
       );
     }
   }, []);
@@ -77,7 +77,7 @@ function Login() {
         </form>
 
         <p className="text-xs text-gray-400 mt-4 text-center">
-          Default akun: <b>admin</b> / <b>admin123</b>
+          Default akun: <b>admin</b> / <b>adminloan2025</b>
         </p>
       </div>
     </div>

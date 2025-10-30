@@ -19,7 +19,7 @@ function App() {
     if (!admin) {
       const defaultAdmin = {
         username: "admin",
-        password: "admin123",
+        password: "adminloan2025",
         fullName: "Yohannes Affandy (Jojo)",
       };
       localStorage.setItem("adminData", JSON.stringify(defaultAdmin));
