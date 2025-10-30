@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
 import ProductBank from "./pages/ProductBank";
